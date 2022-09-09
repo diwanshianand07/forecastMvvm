@@ -19,7 +19,7 @@ class ForecastRepositoryImpl(
 
     init{
         weatherNetworkDataSource.downloadedCurrentWeather.observeForever{ newCurrentWeather ->
-
+            persistFetchedCurrentWeather(newCurrentWeather)
         }
     }
     override suspend fun getcurrentWeather(metric: Boolean): LiveData<out UnitSpecificCurrentWeatherEntry> {
@@ -42,7 +42,7 @@ class ForecastRepositoryImpl(
     }
     private suspend fun fetchCurrentWeather() {
         weatherNetworkDataSource.fetchCurrentWeather(
-            "Los angeles"
+            "India"
         )
     }
     private fun isFetchCurrentNeeded(lastFetchTime: ZonedDateTime): Boolean{

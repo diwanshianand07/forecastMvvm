@@ -12,7 +12,7 @@
         <entry key="app/src/main/res/layout/future_detail_weather_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/future_list_weather_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_future_weather.xml" value="0.1" />
-        <entry key="app/src/main/res/xml/preferences.xml" value="0.1" />
+        <entry key="app/src/main/res/xml/preferences.xml" value="0.25" />
       </map>
     </option>
   </component>

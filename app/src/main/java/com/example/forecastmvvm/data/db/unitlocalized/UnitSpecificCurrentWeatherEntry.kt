@@ -8,4 +8,5 @@ interface UnitSpecificCurrentWeatherEntry {
     val precipitationVolume : Double
     val feelsLikeTemperature: Double
     val visibilityDistance: Double
+    val windSpeed: Double
 }
