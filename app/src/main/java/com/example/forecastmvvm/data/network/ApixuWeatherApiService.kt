@@ -3,6 +3,7 @@ package com.example.forecastmvvm.data.network
 import com.example.forecastmvvm.data.network.ConnectivityInterceptor
 import com.example.forecastmvvm.data.network.ConnectivityInterceptorImpl
 import com.example.forecastmvvm.data.network.response.CurrentWeatherResponse
+import com.example.forecastmvvm.data.network.response.FutureWeatherResponse
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.Deferred
 import okhttp3.Interceptor
@@ -21,6 +22,13 @@ interface ApixuWeatherApiService {
     fun getCurrentWeather(
         @Query("q") location : String = "London"
     ): Deferred<CurrentWeatherResponse>
+
+    //http://api.weatherapi.com/v1/forecast.json?key=bfd5b4bbed1143c59d3173601220509&q=London&days=2&aqi=no&alerts=no
+    @GET("forecast.json")
+    fun getFutureWeather(
+        @Query("q") location: String,
+        @Query("days") days: Int
+    ): Deferred<FutureWeatherResponse>
 
     companion object {
         operator fun invoke(

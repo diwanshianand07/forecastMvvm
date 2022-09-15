@@ -16,7 +16,12 @@ android {
     }
 }
 
+androidExtensions {
+    experimental = true
+}
+
 dependencies {
+
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'com.google.android.material:material:1.6.1'
@@ -31,6 +36,8 @@ dependencies {
 //    implementation "androidx.navigation:navigation-fragment-ktx:2.5.0"
 //    implementation "androidx.navigation:navigation-ui-ktx:2.5.0"
 
+   //Provider
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
 
 
     // Java language implementation
@@ -81,10 +88,12 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
 
     // Groupie RecyclerView
-//    implementation 'com.xwray:groupie:2.1.0'
-//    implementation 'com.xwray:groupie-kotlin-android-extensions:2.1.0'
-
-    // Preference
+//    implementation 'com.xwray:groupie:2.3.0'
+//    implementation 'com.xwray:groupie-kotlin-android-extensions:2.3.0'
+//
+//    implementation "com.github.lisawray.groupie:groupie:2.10.1"
+//    implementation "com.github.lisawray.groupie:groupie-kotlin-android-extensions:2.10.1"
+//    // Preference
     implementation "androidx.preference:preference-ktx:1.2.0"
 
     // WeatherLocation
@@ -101,6 +110,7 @@ dependencies {
 //    implementation "org.kodein.di:kodein-di-framework-android-x:7.12.0"
 
     implementation 'com.jakewharton.threetenabp:threetenabp:1.4.0'
+
 
 
     testImplementation 'junit:junit:4.13.2'

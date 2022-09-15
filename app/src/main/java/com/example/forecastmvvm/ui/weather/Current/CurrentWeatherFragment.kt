@@ -37,28 +37,33 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
         return inflater.inflate(R.layout.current_weather_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View,savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(CurrentWeatherViewModel::class.java)
         bindUI()
-//        val apiService = ApixuWeatherApiService(ConnectivityInterceptorImpl(this.context!!))
-//        val weatherNetworkDataSource = WeatherNetworkDataSourceImpl(apiService)
-//
-//        weatherNetworkDataSource.downloadedCurrentWeather.observe(viewLifecycleOwner, Observer{
-//            textView.text = it.toString()
-//        })
-//        GlobalScope.launch(Dispatchers.Main){
-//            weatherNetworkDataSource.fetchCurrentWeather("London")
-//
-//        }
     }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel = ViewModelProviders.of(this, viewModelFactory)
+            .get(CurrentWeatherViewModel::class.java)
+        bindUI()
+        Log.e("err","come")
+
+    }
+
         private fun bindUI() = launch {
             val currentWeather = viewModel.weather.await()
-            currentWeather.observe(this@CurrentWeatherFragment, Observer {
+            val weatherLocation = viewModel.weatherLocation.await()
+
+            weatherLocation.observe(viewLifecycleOwner, Observer{ location ->
+                if(location == null) return@Observer
+                updateLocation(location.name)
+            })
+            currentWeather.observe(viewLifecycleOwner, Observer {
                 if (it == null) return@Observer
                 group_loading.visibility = View.GONE
-                updateLocation("India")
                 updateDateToToday()
                 updateTemperatures(it.temperature, it.feelsLikeTemperature)
                 updateCondition(it.conditionText)
@@ -73,7 +78,7 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
         }
 
     private fun chooseLocalizedUnitAbbreviation(metric: String, imperial: String): String {
-        return if (viewModel.isMetric) metric else imperial
+        return if (viewModel.isMetricUnit) metric else imperial
     }
 
     private fun updateLocation(location: String) {

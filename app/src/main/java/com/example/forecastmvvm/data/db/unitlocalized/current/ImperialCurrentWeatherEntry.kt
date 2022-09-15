@@ -1,4 +1,4 @@
-package com.example.forecastmvvm.data.db.unitlocalized
+package com.example.forecastmvvm.data.db.unitlocalized.current
 
 import androidx.room.ColumnInfo
 
@@ -19,6 +19,6 @@ data class ImperialCurrentWeatherEntry (
     override val visibilityDistance: Double,
     @ColumnInfo(name = "wind_mph")
     override val windSpeed: Double
-) :UnitSpecificCurrentWeatherEntry {
+) : UnitSpecificCurrentWeatherEntry {
 
 }
